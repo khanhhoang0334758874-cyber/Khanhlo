@@ -1,52 +1,564 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Developer Hub</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <title>Khanhlo — Roblox Scripting</title>
+
+  <style>
+    :root {
+      --bg: #111;
+      --surface: #1d1d1d;
+      --line: rgba(255,255,255,.13);
+      --yellow: #ffcf00;
+      --muted: #b6b6b6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #f7f7f7;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(17,17,17,.95);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .brand {
+      border: 0;
+      background: none;
+      color: #fff;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
+
+    .brand span {
+      color: var(--yellow);
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      margin-left: auto;
+    }
+
+    .nav-link,
+    .login {
+      border: 0;
+      background: none;
+      color: #c5c5c5;
+      font-size: 14px;
+    }
+
+    .nav-link:hover,
+    .login:hover {
+      color: #fff;
+    }
+
+    .join,
+    .main-button {
+      border: 0;
+      border-radius: 8px;
+      background: var(--yellow);
+      color: #111;
+      font-weight: 800;
+      transition: .2s;
+    }
+
+    .join {
+      padding: 11px 16px;
+      font-size: 13px;
+    }
+
+    .join:hover,
+    .main-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(255,207,0,.18);
+    }
+
+    .hero {
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 24px;
+      text-align: center;
+    }
+
+    .kicker,
+    .eyebrow {
+      color: var(--yellow);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+    }
+
+    .kicker:before {
+      content: '●';
+      margin-right: 8px;
+    }
+
+    .hero h1 {
+      margin: 23px 0 0;
+      max-width: 850px;
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: .99;
+      letter-spacing: -5px;
+    }
+
+    .hero h1 span,
+    h2 strong {
+      color: var(--yellow);
+    }
+
+    .hero p {
+      margin: 27px 0 30px;
+      color: #bdbdbd;
+      font-size: 22px;
+      line-height: 1.45;
+    }
+
+    .main-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      font-size: 16px;
+    }
+
+    .hero-note {
+      display: flex;
+      gap: 14px;
+      margin-top: 28px;
+      color: #777;
+      font-size: 11px;
+    }
+
+    .divider {
+      width: 3px;
+      height: 3px;
+      margin-top: 5px;
+      border-radius: 50%;
+      background: #777;
+    }
+
+    .trust {
+      border-block: 1px solid var(--line);
+      background: #151515;
+    }
+
+    .trust-inner {
+      display: flex;
+      justify-content: center;
+      gap: 100px;
+      padding: 19px;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    .trust-inner span:before {
+      content: '✓';
+      margin-right: 8px;
+      color: var(--yellow);
+      font-weight: bold;
+    }
+
+    .resources {
+      padding: 105px 24px;
+    }
+
+    .heading {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .eyebrow:before {
+      content: '';
+      display: inline-block;
+      width: 25px;
+      height: 2px;
+      margin: 0 9px 3px 0;
+      background: var(--yellow);
+    }
+
+    h2 {
+      margin: 15px 0 0;
+      font-size: clamp(36px, 4vw, 55px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+    }
+
+    .heading p {
+      margin: 0;
+      color: #989898;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .card {
+      min-height: 276px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      padding: 24px;
+      transition: .2s;
+    }
+
+    .card:first-child {
+      border-color: rgba(255,207,0,.45);
+      background: linear-gradient(145deg, #292613, #202020 55%);
+    }
+
+    .card:hover {
+      border-color: rgba(255,207,0,.6);
+      transform: translateY(-5px);
+      background: #222;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      color: var(--yellow);
+      background: rgba(255,207,0,.1);
+      font-size: 20px;
+    }
+
+    .tag {
+      color: #888;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 23px 0 10px;
+      color: var(--yellow);
+      font-size: 22px;
+      line-height: 1.14;
+      letter-spacing: -.7px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #bdbdbd;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .detail {
+      margin-top: auto;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--yellow);
+      font-size: 14px;
+      font-weight: 800;
+      text-align: left;
+    }
+
+    .detail:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      .container {
+        padding-inline: 20px;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      .nav {
+        gap: 15px;
+      }
+
+      .login {
+        display: none;
+      }
+
+      .hero {
+        min-height: 540px;
+        padding-top: 55px;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+        letter-spacing: -2.8px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .trust-inner {
+        gap: 24px;
+        justify-content: space-between;
+      }
+
+      .trust-inner span {
+        font-size: 10px;
+      }
+
+      .heading {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .resources {
+        padding-block: 72px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      nav {
+        display: none;
+      }
+
+      .nav {
+        height: 68px;
+      }
+
+      .brand {
+        font-size: 28px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-note {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .divider {
+        display: none;
+      }
+
+      .trust-inner {
+        padding-block: 16px;
+      }
+
+      .trust-inner span:last-child {
+        display: none;
+      }
+
+      .trust-inner span {
+        font-size: 9px;
+      }
+
+      .card {
+        min-height: 235px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <div class="logo">Khanh<span>lo</span></div>
-        <nav>
-            <ul>
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Cộng đồng</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        Khanh<span>lo</span>
+      </a>
 
-    <main>
-        <section class="hero">
-            <h1>Khám Phá World Of Roblox Scripting</h1>
-            <p>Học hỏi, chia sẻ kiến thức lập trình Lua và thiết kế UI game chuyên nghiệp.</p>
-            <button class="btn">Tham gia ngay</button>
-        </section>
+      <nav aria-label="Điều hướng chính">
+        <a class="nav-link" href="#top">Trang chủ</a>
+        <a class="nav-link" href="#resources">Tài nguyên</a>
+      </nav>
 
-        <section class="cards-container">
-            <div class="card">
-                <h3>Script Banana Miễn Phí</h3>
-                <p>Nhận script Banana miễn phí dành riêng cho (chỉ 1 người) mỗi tuần.</p>
-                <a href="" class="card-btn">Xem chi tiết</a>
-            </div>
-            
-            <div class="card">
-                <h3>Hack Roblox VNG_Quốc Tế</h3>
-                <p>các bản hack Delta và các bản khác</p>
-                <a href="https://link4sub.com/DuZO7or4Mr" class="card-btn">Xem chi tiết</a>
-            </div>
+      <button class="login" onclick="notify('Đăng nhập')">
+        Đăng nhập
+      </button>
 
-            <div class="card">
-                <h3>Script</h3>
-                <p>các script miễn phí</p>
-                <a href="#" class="card-btn">Xem chi tiết</a>
-            </div>
-        </section>
-    </main>
+      <button class="join" onclick="notify('Tham gia cộng đồng')">
+        Tham gia →
+      </button>
+    </div>
+  </header>
 
-    <footer>
-        <p>&copy; 2026 Roblox Developer Hub. All rights reserved.</p>
-    </footer>
+  <main>
+    <section id="top" class="hero container">
+      <div class="kicker">
+        CỘNG ĐỒNG ROBLOX VIỆT NAM
+      </div>
+
+      <h1>
+        Khám Phá World Of<br>
+        <span>Roblox Scripting</span>
+      </h1>
+
+      <p>
+        Học hỏi, chia sẻ kiến thức lập trình Lua và<br>
+        thiết kế UI game chuyên nghiệp.
+      </p>
+
+      <button
+        class="main-button"
+        onclick="document.querySelector('#resources').scrollIntoView({behavior:'smooth'})">
+        Tham gia ngay →
+      </button>
+
+      <div class="hero-note">
+        <span>Được xây dựng cho người mới</span>
+        <span class="divider"></span>
+        <span>Hoàn toàn miễn phí</span>
+      </div>
+    </section>
+
+    <section class="trust">
+      <div class="container trust-inner">
+        <span>Nội dung dễ hiểu</span>
+        <span>An toàn & minh bạch</span>
+        <span>Cộng đồng hỗ trợ</span>
+      </div>
+    </section>
+
+    <section id="resources" class="resources container">
+      <div class="heading">
+        <div>
+          <div class="eyebrow">TÀI NGUYÊN MỚI</div>
+
+          <h2>
+            Học nhanh hơn.<br>
+            <strong>Làm tốt hơn.</strong>
+          </h2>
+        </div>
+
+        <p>
+          Những nội dung thực tế, được chọn lọc để bạn có thể bắt đầu xây dựng thế giới Roblox của riêng mình.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-top">
+            <span class="icon">✦</span>
+            <span class="tag">Nổi bật</span>
+          </div>
+
+          <h3>Script Banana Miễn Phí</h3>
+
+          <p>
+            Nhận script Banana miễn phí dành riêng cho thành viên may mắn mỗi tuần.
+          </p>
+
+          <button class="detail" onclick="notify('Mở Script Banana Miễn Phí')">
+            Xem chi tiết →
+          </button>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <span class="icon">⌘</span>
+            <span class="tag">Script</span>
+          </div>
+
+          <h3>Hack Roblox VNG_Quốc Tế</h3>
+
+          <p>
+            Các bản hack Delta và các bản khác được cộng đồng tổng hợp.
+          </p>
+
+          <button class="detail" onclick="notify('Mở Hack Roblox VNG_Quốc Tế')">
+            Xem chi tiết →
+          </button>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <span class="icon">&lt;/&gt;</span>
+            <span class="tag">Miễn phí</span>
+          </div>
+
+          <h3>Script</h3>
+
+          <p>
+            Các script miễn phí dành cho người học và thử nghiệm trong Roblox Studio.
+          </p>
+
+          <button class="detail" onclick="notify('Mở Script')">
+            Xem chi tiết →
+          </button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function notify(message) {
+      alert(message + "\n\nTính năng đang được hoàn thiện.");
+    }
+  </script>
 </body>
 </html>
