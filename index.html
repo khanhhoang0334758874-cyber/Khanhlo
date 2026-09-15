@@ -72,7 +72,10 @@
       letter-spacing: -2px;
     }
 
-    .brand span {
+    .brand span,
+    h1 span,
+    h2 strong,
+    .card h3 {
       color: var(--yellow);
     }
 
@@ -134,8 +137,8 @@
       letter-spacing: 1.8px;
     }
 
-    .kicker:before {
-      content: '●';
+    .kicker::before {
+      content: "●";
       margin-right: 8px;
     }
 
@@ -145,11 +148,6 @@
       font-size: clamp(44px, 7vw, 82px);
       line-height: .99;
       letter-spacing: -5px;
-    }
-
-    .hero h1 span,
-    h2 strong {
-      color: var(--yellow);
     }
 
     .hero p {
@@ -197,8 +195,8 @@
       font-size: 12px;
     }
 
-    .trust-inner span:before {
-      content: '✓';
+    .trust-inner span::before {
+      content: "✓";
       margin-right: 8px;
       color: var(--yellow);
       font-weight: bold;
@@ -216,8 +214,8 @@
       margin-bottom: 42px;
     }
 
-    .eyebrow:before {
-      content: '';
+    .eyebrow::before {
+      content: "";
       display: inline-block;
       width: 25px;
       height: 2px;
@@ -294,7 +292,6 @@
 
     .card h3 {
       margin: 23px 0 10px;
-      color: var(--yellow);
       font-size: 22px;
       line-height: 1.14;
       letter-spacing: -.7px;
@@ -320,6 +317,154 @@
 
     .detail:hover {
       text-decoration: underline;
+    }
+
+    .detail-page {
+      min-height: calc(100vh - 78px);
+    }
+
+    .detail-hero {
+      padding: 76px 24px 70px;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 42px;
+      color: #969696;
+      font-size: 13px;
+    }
+
+    .back-link:hover {
+      color: var(--yellow);
+    }
+
+    .detail-icon {
+      display: grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      margin: 0 auto 24px;
+      border: 1px solid rgba(255,207,0,.35);
+      border-radius: 15px;
+      color: var(--yellow);
+      background: rgba(255,207,0,.1);
+      font-size: 24px;
+    }
+
+    .detail-hero .eyebrow {
+      justify-content: center;
+    }
+
+    .detail-hero h1 {
+      margin: 18px 0 0;
+      font-size: clamp(40px, 6vw, 70px);
+      line-height: 1;
+      letter-spacing: -4px;
+    }
+
+    .detail-hero p {
+      max-width: 560px;
+      margin: 22px auto 0;
+      color: #a7a7a7;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .detail-content {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      padding: 0 24px 110px;
+    }
+
+    .detail-panel,
+    .detail-aside {
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--surface);
+      padding: 34px;
+    }
+
+    .detail-panel {
+      border-color: rgba(255,207,0,.35);
+      background: linear-gradient(145deg, #292613, #202020 55%);
+    }
+
+    .panel-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      color: var(--yellow);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .points {
+      display: grid;
+      gap: 16px;
+      padding: 26px 0 30px;
+    }
+
+    .point {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: #d0d0d0;
+      font-size: 14px;
+    }
+
+    .point::before {
+      content: "✓";
+      color: var(--yellow);
+      font-weight: bold;
+    }
+
+    .detail-aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .aside-label {
+      color: var(--yellow);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .detail-aside h2 {
+      margin-top: 15px;
+      font-size: 36px;
+    }
+
+    .detail-aside p {
+      margin: 22px 0 27px;
+      color: #999;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .outline {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 17px;
+      border: 1px solid rgba(255,207,0,.55);
+      border-radius: 7px;
+      color: var(--yellow);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .outline:hover {
+      background: rgba(255,207,0,.08);
     }
 
     @media (max-width: 800px) {
@@ -374,6 +519,21 @@
       .resources {
         padding-block: 72px;
       }
+
+      .detail-content {
+        grid-template-columns: 1fr;
+        padding-bottom: 75px;
+      }
+
+      .detail-panel,
+      .detail-aside {
+        padding: 26px;
+      }
+
+      .detail-hero {
+        padding-top: 52px;
+        padding-bottom: 54px;
+      }
     }
 
     @media (max-width: 520px) {
@@ -421,6 +581,11 @@
       .card {
         min-height: 235px;
       }
+
+      .detail-hero h1 {
+        font-size: 42px;
+        letter-spacing: -2.5px;
+      }
     }
   </style>
 </head>
@@ -432,7 +597,7 @@
         Khanh<span>lo</span>
       </a>
 
-      <nav aria-label="Điều hướng chính">
+      <nav>
         <a class="nav-link" href="#top">Trang chủ</a>
         <a class="nav-link" href="#resources">Tài nguyên</a>
       </nav>
@@ -447,118 +612,222 @@
     </div>
   </header>
 
-  <main>
-    <section id="top" class="hero container">
-      <div class="kicker">
-        CỘNG ĐỒNG ROBLOX KHANHLO
-      </div>
-
-      <h1>
-        Khám Phá <br>
-        <span>Roblox Scripting</span>
-      </h1>
-
-      <p>
-        các bản hack roblox <br>
-
-      </p>
-
-      <button
-        class="main-button"
-        onclick="document.querySelector('#resources').scrollIntoView({behavior:'smooth'})">
-        Tham gia ngay →
-      </button>
-
-      <div class="hero-note">
-        <span>Được xây dựng cho người mới</span>
-        <span class="divider"></span>
-        <span>Hoàn toàn miễn phí</span>
-      </div>
-    </section>
-
-    <section class="trust">
-      <div class="container trust-inner">
-        <span>Nội dung dễ hiểu</span>
-        <span>An toàn & minh bạch</span>
-        <span>Cộng đồng hỗ trợ</span>
-      </div>
-    </section>
-
-    <section id="resources" class="resources container">
-      <div class="heading">
-        <div>
-          <div class="eyebrow">TÀI NGUYÊN MỚI</div>
-
-          <h2>
-            <br>
-            <strong></strong>
-          </h2>
-        </div>
-
-        <p>
-           
-        </p>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="card-top">
-            <span class="icon">✦</span>
-            <span class="tag">Nổi bật</span>
-          </div>
-
-          <h3>Script Banana Miễn Phí</h3>
-
-          <p>
-            Nhận script Banana miễn phí dành riêng cho thành viên may mắn mỗi tuần.
-          </p>
-
-          <button class="detail" onclick="notify('Mở Script Banana Miễn Phí')">
-            Xem chi tiết →
-          </button>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <span class="icon">⌘</span>
-            <span class="tag">Script</span>
-          </div>
-
-          <h3>Hack Roblox VNG_Quốc Tế</h3>
-
-          <p>
-            Các bản hack Delta và các bản khác 
-          </p>
-
-          <button class="detail" onclick="notify('Mở Hack Roblox VNG_Quốc Tế')">
-            Xem chi tiết →
-          </button> 
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <span class="icon">&lt;/&gt;</span>
-            <span class="tag">Miễn phí</span>
-          </div>
-
-          <h3>Script</h3>
-
-          <p>
-            Các script miễn phí dành cho người học và thử nghiệm trong Roblox Studio.
-          </p>
-
-          <button class="detail" onclick="notify('Mở Script')">
-            Xem chi tiết →
-          </button>
-        </article>
-      </div>
-    </section>
-  </main>
+  <main id="app"></main>
 
   <script>
+    const resources = {
+      "script-banana": {
+        title: "Script Banana Miễn Phí",
+        tag: "Nổi bật",
+        icon: "✦",
+        summary: "Tổng hợp thông tin và hướng dẫn sử dụng tài nguyên Script Banana dành cho cộng đồng Roblox.",
+        points: [
+          "Hướng dẫn cài đặt rõ ràng cho người mới",
+          "Cập nhật thông tin theo từng phiên bản",
+          "Khu vực hỏi đáp và chia sẻ kinh nghiệm"
+        ]
+      },
+
+      "hack-vng": {
+        title: "Hack Roblox VNG_Quốc Tế",
+        tag: "Script",
+        icon: "⌘",
+        summary: "Trang thông tin riêng cho tài nguyên Roblox VNG_Quốc Tế và các liên kết do cộng đồng chia sẻ.",
+        points: [
+          "Thông tin tài nguyên được trình bày minh bạch",
+          "Mở liên kết nguồn ở tab mới",
+          "Không chứa mã độc hoặc mã exploit trực tiếp trên website"
+        ],
+        external: "https://link4sub.com/4golkVG3Ch"
+      },
+
+      "script": {
+        title: "Script",
+        tag: "Miễn phí",
+        icon: "&lt;/&gt;",
+        summary: "Kho nội dung script miễn phí dành cho người học và thử nghiệm trong Roblox Studio.",
+        points: [
+          "Ví dụ Lua dễ đọc và dễ chỉnh sửa",
+          "Tập trung vào mục đích học tập",
+          "Có thể mở rộng thành hệ thống gameplay riêng"
+        ]
+      }
+    };
+
     function notify(message) {
       alert(message + "\n\nTính năng đang được hoàn thiện.");
     }
+
+    function home() {
+      return `
+        <section id="top" class="hero container">
+          <div class="kicker">
+            CỘNG ĐỒNG ROBLOX VIỆT NAM
+          </div>
+
+          <h1>
+            Khám Phá World Of<br>
+            <span>Roblox Scripting</span>
+          </h1>
+
+          <p>
+            Học hỏi, chia sẻ kiến thức lập trình Lua và<br>
+            thiết kế UI game chuyên nghiệp.
+          </p>
+
+          <button
+            class="main-button"
+            onclick="location.hash='resources'">
+            Tham gia ngay →
+          </button>
+
+          <div class="hero-note">
+            <span>Được xây dựng cho người mới</span>
+            <span class="divider"></span>
+            <span>Hoàn toàn miễn phí</span>
+          </div>
+        </section>
+
+        <section class="trust">
+          <div class="container trust-inner">
+            <span>Nội dung dễ hiểu</span>
+            <span>An toàn & minh bạch</span>
+            <span>Cộng đồng hỗ trợ</span>
+          </div>
+        </section>
+
+        <section id="resources" class="resources container">
+          <div class="heading">
+            <div>
+              <div class="eyebrow">TÀI NGUYÊN MỚI</div>
+
+              <h2>
+                Học nhanh hơn.<br>
+                <strong>Làm tốt hơn.</strong>
+              </h2>
+            </div>
+
+            <p>
+              Những nội dung thực tế, được chọn lọc để bạn có thể bắt đầu xây dựng thế giới Roblox của riêng mình.
+            </p>
+          </div>
+
+          <div class="cards">
+            ${Object.entries(resources).map(([slug, resource]) => `
+              <article class="card">
+                <div class="card-top">
+                  <span class="icon">${resource.icon}</span>
+                  <span class="tag">${resource.tag}</span>
+                </div>
+
+                <h3>${resource.title}</h3>
+                <p>${resource.summary}</p>
+
+                <a class="detail" href="#resource/${slug}">
+                  Xem chi tiết →
+                </a>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function detail(slug) {
+      const resource = resources[slug] || resources.script;
+
+      const action = resource.external
+        ? `
+          <a
+            class="main-button"
+            href="${resource.external}"
+            target="_blank"
+            rel="noopener noreferrer">
+            Mở liên kết nguồn ↗
+          </a>
+        `
+        : `
+          <button
+            class="main-button"
+            onclick="notify('Bắt đầu tìm hiểu')">
+            Bắt đầu tìm hiểu ↗
+          </button>
+        `;
+
+      return `
+        <section class="detail-page">
+          <div class="detail-hero container">
+            <a class="back-link" href="#resources">
+              ← Quay lại tài nguyên
+            </a>
+
+            <div class="detail-icon">
+              ${resource.icon}
+            </div>
+
+            <div class="eyebrow">
+              ${resource.tag}
+            </div>
+
+            <h1>${resource.title}</h1>
+            <p>${resource.summary}</p>
+          </div>
+
+          <section class="detail-content container">
+            <div class="detail-panel">
+              <div class="panel-heading">
+                ▣ &nbsp; Thông tin tài nguyên
+              </div>
+
+              <div class="points">
+                ${resource.points.map(point => `
+                  <div class="point">
+                    ${point}
+                  </div>
+                `).join("")}
+              </div>
+
+              ${action}
+            </div>
+
+            <aside class="detail-aside">
+              <span class="aside-label">Khanhlo note</span>
+
+              <h2>
+                Học đúng cách,<br>
+                <strong>xây tốt hơn.</strong>
+              </h2>
+
+              <p>
+                Hãy kiểm tra nguồn tải, đọc hướng dẫn và chỉ sử dụng tài nguyên trong môi trường thử nghiệm an toàn.
+              </p>
+
+              <a class="outline" href="#resources">
+                Xem các tài nguyên khác ←
+              </a>
+            </aside>
+          </section>
+        </section>
+      `;
+    }
+
+    function render() {
+      const hash = location.hash.replace("#", "");
+
+      document.getElementById("app").innerHTML =
+        hash.startsWith("resource/")
+          ? detail(hash.split("/")[1])
+          : home();
+
+      if (hash === "resources") {
+        document
+          .getElementById("resources")
+          ?.scrollIntoView();
+      }
+    }
+
+    window.addEventListener("hashchange", render);
+    render();
   </script>
 </body>
 </html>
