@@ -9,10 +9,11 @@
   <style>
     :root {
       --bg: #111;
-      --surface: #1d1d1d;
-      --line: rgba(255,255,255,.13);
-      --yellow: #ffcf00;
-      --muted: #b6b6b6;
+      --card: #1d1d1d;
+      --green: #39ff14;
+      --text: #f7f7f7;
+      --muted: #aaa;
+      --line: rgba(255,255,255,.14);
     }
 
     * {
@@ -26,13 +27,8 @@
     body {
       margin: 0;
       background: var(--bg);
-      color: #f7f7f7;
+      color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
-    }
-
-    button {
-      font: inherit;
-      cursor: pointer;
     }
 
     a {
@@ -40,11 +36,17 @@
       text-decoration: none;
     }
 
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
     .container {
       width: 100%;
       max-width: 1180px;
       margin: auto;
-      padding: 0 24px;
+      padding-left: 24px;
+      padding-right: 24px;
     }
 
     header {
@@ -57,31 +59,45 @@
     }
 
     .nav {
-      height: 78px;
+      min-height: 78px;
       display: flex;
       align-items: center;
       gap: 30px;
     }
 
     .brand {
-      border: 0;
-      background: none;
-      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
       font-size: 30px;
       font-weight: 800;
       letter-spacing: -2px;
     }
 
-    .brand span,
+    .brand span:last-child,
     h1 span,
     h2 strong,
     .card h3 {
-      color: var(--yellow);
+      color: var(--green);
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border: 1px solid var(--green);
+      border-radius: 9px;
+      color: #071007;
+      background: linear-gradient(145deg, #39ff14, #0b8f16);
+      box-shadow: 0 0 10px var(--green);
+      font-weight: 900;
     }
 
     nav {
       display: flex;
-      gap: 32px;
+      gap: 30px;
       margin-left: auto;
     }
 
@@ -93,19 +109,13 @@
       font-size: 14px;
     }
 
-    .nav-link:hover,
-    .login:hover {
-      color: #fff;
-    }
-
     .join,
     .main-button {
       border: 0;
       border-radius: 8px;
-      background: var(--yellow);
+      background: var(--green);
       color: #111;
       font-weight: 800;
-      transition: .2s;
     }
 
     .join {
@@ -113,105 +123,68 @@
       font-size: 13px;
     }
 
-    .join:hover,
-    .main-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(255,207,0,.18);
-    }
-
     .hero {
-      min-height: 600px;
+      min-height: 310px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 70px 24px;
+      padding-top: 28px;
+      padding-bottom: 28px;
       text-align: center;
     }
 
     .kicker,
     .eyebrow {
-      color: var(--yellow);
+      color: var(--green);
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 1.8px;
     }
 
+    @keyframes dotCycle {
+      0%, 100% {
+        color: #39ff14;
+        text-shadow: 0 0 8px #39ff14;
+      }
+
+      25% {
+        color: #2693ff;
+        text-shadow: 0 0 8px #2693ff;
+      }
+
+      50% {
+        color: #ff3b4d;
+        text-shadow: 0 0 8px #ff3b4d;
+      }
+
+      75% {
+        color: #ffe04b;
+        text-shadow: 0 0 8px #ffe04b;
+      }
+    }
+
     .kicker::before {
       content: "●";
+      display: inline-block;
       margin-right: 8px;
+      animation: dotCycle 8s ease-in-out infinite;
     }
 
     .hero h1 {
-      margin: 23px 0 0;
-      max-width: 850px;
-      font-size: clamp(44px, 7vw, 82px);
-      line-height: .99;
-      letter-spacing: -5px;
-    }
-
-    .hero p {
-      margin: 27px 0 30px;
-      color: #bdbdbd;
-      font-size: 22px;
-      line-height: 1.45;
-    }
-
-    .main-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 28px;
-      font-size: 16px;
-    }
-
-    .hero-note {
-      display: flex;
-      gap: 14px;
-      margin-top: 28px;
-      color: #777;
-      font-size: 11px;
-    }
-
-    .divider {
-      width: 3px;
-      height: 3px;
-      margin-top: 5px;
-      border-radius: 50%;
-      background: #777;
-    }
-
-    .trust {
-      border-block: 1px solid var(--line);
-      background: #151515;
-    }
-
-    .trust-inner {
-      display: flex;
-      justify-content: center;
-      gap: 100px;
-      padding: 19px;
-      color: #aaa;
-      font-size: 12px;
-    }
-
-    .trust-inner span::before {
-      content: "✓";
-      margin-right: 8px;
-      color: var(--yellow);
-      font-weight: bold;
+      margin: 14px 0 0;
+      font-size: clamp(40px, 7vw, 68px);
+      line-height: 1;
+      letter-spacing: -3px;
     }
 
     .resources {
-      padding: 105px 24px;
+      padding-top: 28px;
+      padding-bottom: 55px;
     }
 
     .heading {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: end;
-      margin-bottom: 42px;
+      margin-bottom: 24px;
     }
 
     .eyebrow::before {
@@ -220,21 +193,7 @@
       width: 25px;
       height: 2px;
       margin: 0 9px 3px 0;
-      background: var(--yellow);
-    }
-
-    h2 {
-      margin: 15px 0 0;
-      font-size: clamp(36px, 4vw, 55px);
-      line-height: 1.02;
-      letter-spacing: -3px;
-    }
-
-    .heading p {
-      margin: 0;
-      color: #989898;
-      font-size: 15px;
-      line-height: 1.65;
+      background: var(--green);
     }
 
     .cards {
@@ -244,41 +203,41 @@
     }
 
     .card {
-      min-height: 276px;
+      min-height: 235px;
       display: flex;
       flex-direction: column;
+      padding: 24px;
       border: 1px solid var(--line);
       border-radius: 12px;
-      background: var(--surface);
-      padding: 24px;
+      background: var(--card);
       transition: .2s;
     }
 
     .card:first-child {
-      border-color: rgba(255,207,0,.45);
-      background: linear-gradient(145deg, #292613, #202020 55%);
+      border-color: rgba(57,255,20,.45);
+      background: linear-gradient(145deg, #142414, #171c17 55%);
     }
 
     .card:hover {
-      border-color: rgba(255,207,0,.6);
       transform: translateY(-5px);
-      background: #222;
+      border-color: var(--green);
+      box-shadow: 0 0 25px rgba(57,255,20,.22);
     }
 
     .card-top {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
 
     .icon {
       display: grid;
-      place-items: center;
       width: 42px;
       height: 42px;
+      place-items: center;
       border-radius: 10px;
-      color: var(--yellow);
-      background: rgba(255,207,0,.1);
+      color: var(--green);
+      background: rgba(57,255,20,.1);
       font-size: 20px;
     }
 
@@ -293,8 +252,6 @@
     .card h3 {
       margin: 23px 0 10px;
       font-size: 22px;
-      line-height: 1.14;
-      letter-spacing: -.7px;
     }
 
     .card p {
@@ -306,39 +263,164 @@
 
     .detail {
       margin-top: auto;
-      padding: 0;
-      border: 0;
-      background: none;
-      color: var(--yellow);
+      padding-top: 20px;
+      color: var(--green);
       font-size: 14px;
       font-weight: 800;
-      text-align: left;
     }
 
-    .detail:hover {
-      text-decoration: underline;
+    /* Thống kê */
+
+    .stats-section {
+      padding: 16px 24px 48px;
     }
+
+    .stats-board {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 30px;
+      overflow: hidden;
+      padding: 26px;
+      border: 1px solid rgba(57,255,20,.25);
+      border-radius: 18px;
+      background: linear-gradient(135deg, #142414, #111711 48%, #101310);
+      box-shadow: inset 0 0 40px rgba(57,255,20,.045);
+    }
+
+    .stats-title {
+      margin: 0 0 7px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .stats-subtitle {
+      margin: 0;
+      color: #94a394;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .stats-numbers {
+      display: grid;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .stat-number {
+      padding: 16px;
+      border: 1px solid rgba(57,255,20,.25);
+      border-radius: 12px;
+      background: rgba(0,0,0,.25);
+    }
+
+    .stat-number strong {
+      display: block;
+      color: #f0ffed;
+      font-size: 28px;
+    }
+
+    .stat-number span {
+      display: block;
+      margin-top: 8px;
+      color: #8d9c8d;
+      font-size: 11px;
+    }
+
+    .chart-heading {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      color: #d7e4d4;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .chart-heading span:last-child {
+      color: #809080;
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    .chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      min-height: 190px;
+      overflow-x: auto;
+      padding: 20px 10px 0;
+      border-bottom: 1px solid rgba(57,255,20,.28);
+    }
+
+    .bar-wrap {
+      display: flex;
+      height: 165px;
+      min-width: 48px;
+      flex: 0 0 48px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 7px;
+    }
+
+    .bar-value {
+      color: #b8ffad;
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .bar {
+      width: 24px;
+      min-height: 8px;
+      border-radius: 7px 7px 3px 3px;
+      background: linear-gradient(to top, #1a9b15, #39ff14);
+      box-shadow: 0 0 11px rgba(57,255,20,.24);
+    }
+
+    .bar-label {
+      color: #829082;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .total-bar {
+      min-width: 66px;
+      flex-basis: 66px;
+      margin-left: 5px;
+      padding-left: 12px;
+      border-left: 1px solid rgba(57,255,20,.25);
+    }
+
+    .total-bar .bar {
+      background: linear-gradient(to top, #39ff14, #c7ff3d);
+    }
+
+    .stats-note {
+      margin: 12px 0 0;
+      color: #738073;
+      font-size: 10px;
+      text-align: right;
+    }
+
+    /* Trang chi tiết */
 
     .detail-page {
       min-height: calc(100vh - 78px);
     }
 
     .detail-hero {
-      padding: 76px 24px 70px;
+      padding: 52px 24px 54px;
       text-align: center;
     }
 
     .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
+      display: inline-block;
       margin-bottom: 42px;
       color: #969696;
       font-size: 13px;
-    }
-
-    .back-link:hover {
-      color: var(--yellow);
     }
 
     .detail-icon {
@@ -346,30 +428,24 @@
       width: 58px;
       height: 58px;
       place-items: center;
-      margin: 0 auto 24px;
-      border: 1px solid rgba(255,207,0,.35);
+      margin: auto auto 24px;
+      border: 1px solid rgba(57,255,20,.35);
       border-radius: 15px;
-      color: var(--yellow);
-      background: rgba(255,207,0,.1);
+      color: var(--green);
+      background: rgba(57,255,20,.1);
       font-size: 24px;
-    }
-
-    .detail-hero .eyebrow {
-      justify-content: center;
     }
 
     .detail-hero h1 {
       margin: 18px 0 0;
       font-size: clamp(40px, 6vw, 70px);
       line-height: 1;
-      letter-spacing: -4px;
     }
 
     .detail-hero p {
       max-width: 560px;
       margin: 22px auto 0;
       color: #a7a7a7;
-      font-size: 17px;
       line-height: 1.6;
     }
 
@@ -377,106 +453,105 @@
       display: grid;
       grid-template-columns: 1.15fr .85fr;
       gap: 22px;
-      padding: 0 24px 110px;
+      padding: 0 24px 75px;
     }
 
     .detail-panel,
     .detail-aside {
-      border: 1px solid var(--line);
+      padding: 26px;
+      border: 1px solid rgba(57,255,20,.4);
       border-radius: 13px;
-      background: var(--surface);
-      padding: 34px;
-    }
-
-    .detail-panel {
-      border-color: rgba(255,207,0,.35);
-      background: linear-gradient(145deg, #292613, #202020 55%);
-    }
-
-    .panel-heading {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--line);
-      color: var(--yellow);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .points {
-      display: grid;
-      gap: 16px;
-      padding: 26px 0 30px;
-    }
-
-    .point {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      color: #d0d0d0;
-      font-size: 14px;
-    }
-
-    .point::before {
-      content: "✓";
-      color: var(--yellow);
-      font-weight: bold;
-    }
-
-    .detail-aside {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .aside-label {
-      color: var(--yellow);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
+      background: linear-gradient(145deg, #142414, #171c17 55%);
     }
 
     .detail-aside h2 {
-      margin-top: 15px;
-      font-size: 36px;
+      color: var(--green);
     }
 
     .detail-aside p {
-      margin: 22px 0 27px;
-      color: #999;
-      font-size: 14px;
+      color: #d0d0d0;
       line-height: 1.65;
     }
 
     .outline {
-      align-self: flex-start;
       display: inline-flex;
-      align-items: center;
-      gap: 8px;
       padding: 12px 17px;
-      border: 1px solid rgba(255,207,0,.55);
+      border: 1px solid rgba(57,255,20,.55);
       border-radius: 7px;
-      color: var(--yellow);
+      color: var(--green);
       font-size: 13px;
       font-weight: 800;
     }
 
-    .outline:hover {
-      background: rgba(255,207,0,.08);
+    .banana-code-title {
+      margin: 0 0 16px;
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 800;
+      word-spacing: 8px;
+    }
+
+    .banana-code,
+    .hub-code {
+      overflow: auto;
+      padding: 15px;
+      border: 1px solid rgba(57,255,20,.3);
+      border-radius: 9px;
+      background: #080d08;
+      color: #b8ffad;
+      font: 12px/1.7 Consolas, monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .banana-copy,
+    .hub-copy {
+      margin-top: 12px;
+      padding: 9px 13px;
+      border: 1px solid rgba(57,255,20,.5);
+      border-radius: 7px;
+      color: var(--green);
+      background: transparent;
+      font-weight: 800;
+    }
+
+    .hub-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .hub-card {
+      padding: 18px;
+      border: 1px solid rgba(57,255,20,.25);
+      border-radius: 12px;
+      background: rgba(5,16,5,.42);
+    }
+
+    .hub-card h3 {
+      margin: 0 0 8px;
+      color: var(--green);
+    }
+
+    .hub-card p {
+      color: #c3cec2;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .hack-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .main-button {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      text-align: center;
     }
 
     @media (max-width: 800px) {
-      .container {
-        padding-inline: 20px;
-      }
-
       nav {
-        gap: 15px;
-      }
-
-      .nav {
         gap: 15px;
       }
 
@@ -484,55 +559,22 @@
         display: none;
       }
 
-      .hero {
-        min-height: 540px;
-        padding-top: 55px;
-      }
-
-      .hero h1 {
-        font-size: 44px;
-        letter-spacing: -2.8px;
-      }
-
-      .hero p {
-        font-size: 17px;
-      }
-
-      .trust-inner {
-        gap: 24px;
-        justify-content: space-between;
-      }
-
-      .trust-inner span {
-        font-size: 10px;
-      }
-
-      .heading {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
       .cards {
         grid-template-columns: 1fr;
       }
 
-      .resources {
-        padding-block: 72px;
-      }
-
+      .stats-board,
       .detail-content {
         grid-template-columns: 1fr;
-        padding-bottom: 75px;
+      }
+
+      .stats-numbers {
+        grid-template-columns: 1fr 1fr;
       }
 
       .detail-panel,
       .detail-aside {
-        padding: 26px;
-      }
-
-      .detail-hero {
-        padding-top: 52px;
-        padding-bottom: 54px;
+        padding: 20px;
       }
     }
 
@@ -542,49 +584,39 @@
       }
 
       .nav {
-        height: 68px;
+        min-height: 68px;
       }
 
       .brand {
         font-size: 28px;
       }
 
+      .hero {
+        min-height: 270px;
+        padding-top: 22px;
+        padding-bottom: 22px;
+      }
+
       .hero h1 {
         font-size: 42px;
       }
 
-      .hero p {
-        font-size: 16px;
+      .stats-section {
+        padding-left: 20px;
+        padding-right: 20px;
       }
 
-      .hero-note {
-        flex-direction: column;
-        gap: 8px;
+      .stats-board {
+        padding: 20px;
       }
 
-      .divider {
-        display: none;
+      .stats-numbers {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .trust-inner {
-        padding-block: 16px;
-      }
-
-      .trust-inner span:last-child {
-        display: none;
-      }
-
-      .trust-inner span {
-        font-size: 9px;
-      }
-
-      .card {
-        min-height: 235px;
-      }
-
-      .detail-hero h1 {
-        font-size: 42px;
-        letter-spacing: -2.5px;
+      .detail-content {
+        padding-left: 20px;
+        padding-right: 20px;
       }
     }
   </style>
@@ -594,6 +626,7 @@
   <header>
     <div class="container nav">
       <a class="brand" href="#top">
+        <span class="brand-mark">M</span>
         Khanh<span>lo</span>
       </a>
 
@@ -620,7 +653,8 @@
         title: "Script Banana Miễn Phí",
         tag: "Nổi bật",
         icon: "✦",
-        summary: "Tổng hợp thông tin và hướng dẫn sử dụng tài nguyên Script Banana dành cho cộng đồng Roblox.",
+        summary:
+          "Mỗi 1 tuần sẽ có 1 bạn may mắn nhận được script banana (lưu ý banana chỉ dùng được 8 ngày)👇",
         points: [
           "Hướng dẫn cài đặt rõ ràng cho người mới",
           "Cập nhật thông tin theo từng phiên bản",
@@ -632,84 +666,110 @@
         title: "Hack Roblox VNG_Quốc Tế",
         tag: "Script",
         icon: "⌘",
-        summary: "Trang thông tin riêng cho tài nguyên Roblox VNG_Quốc Tế và các liên kết do cộng đồng chia sẻ.",
-        points: [
-          "Thông tin tài nguyên được trình bày minh bạch",
-          "Mở liên kết nguồn ở tab mới",
-          "Không chứa mã độc hoặc mã exploit trực tiếp trên website"
-        ],
-        external: "https://link4sub.com/4golkVG3Ch"
+        summary: "Mọi hack roblox miễn phí đều ở đây👇",
+        external: "https://link4sub.com/Pxo1a6ePS0",
+        external2:
+          "https://www.mediafire.com/file/i1918071p04vq7z/Delta+Vng+V2.738.apk/file?dkey=47espvd3o7e&r=1433",
+        external3: "https://link4sub.com/EIHVlu5ddD",
+        external4: "https://link4sub.com/cm0Bx8ZNdn"
       },
 
-      "script": {
+      script: {
         title: "Script",
         tag: "Miễn phí",
         icon: "&lt;/&gt;",
-        summary: "Kho nội dung script miễn phí dành cho người học và thử nghiệm trong Roblox Studio.",
-        points: [
-          "Ví dụ Lua dễ đọc và dễ chỉnh sửa",
-          "Tập trung vào mục đích học tập",
-          "Có thể mở rộng thành hệ thống gameplay riêng"
-        ]
+        summary: "Các script miễn phí không cần get key👇"
       }
     };
+
+    const scriptHubs = [
+      {
+        name: "Redz Hub",
+        description:
+          "Hỗ trợ Auto Farm, V4 Draco và được tối ưu để giảm lag trong quá trình sử dụng:",
+        code: `local Settings = {JoinTeam = "Pirates"; Translator = true;}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/newredz/BloxFruits/refs/heads/main/Source.luau"))()`
+      },
+
+      {
+        name: "Hoho Hub",
+        description:
+          "Tích hợp chế độ Auto Farm, Sea Event, Auto Fly và tối ưu hiệu suất để giảm lag đáng kể, bạn chỉ cần chạy lệnh:",
+        code:
+          'loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()'
+      },
+
+      {
+        name: "Blue X Hub",
+        description:
+          "Hỗ trợ Auto Farm, Sea Event, Magnet và được tối ưu để chạy ổn định, không gây giật lag:",
+        code:
+          'loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()'
+      },
+
+      {
+        name: "Vxeze Hub",
+        description:
+          "Được thiết kế cho Auto Farm, Gun Mastery, Raid và Volcano Event, có khả năng giảm lag trong quá trình chạy script:",
+        code:
+          'loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/Skidlamcho.txt"))()'
+      },
+
+      {
+        name: "Quartz Kaitun Hub",
+        description:
+          "Tích hợp chế độ Auto Kaitun, Farm và có cấu hình tối ưu để hạn chế giật lag:",
+        code: `getgenv().Mode = "OneClick"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/Loader.lua"))()`
+      },
+
+      {
+        name: "Maru Hub",
+        description:
+          "Hỗ trợ Auto Farm, Raid, Rain Fruit và hoạt động ổn định không cần khóa:",
+        code: `getgenv().Team = "Marines"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/KimP/refs/heads/main/MaruHub"))()`
+      }
+    ];
 
     function notify(message) {
       alert(message + "\n\nTính năng đang được hoàn thiện.");
     }
 
     function home() {
+      const months = [
+        ["1.020", "56%", "Tháng 1"],
+        ["1.180", "64%", "Tháng 2"],
+        ["1.260", "68%", "Tháng 3"],
+        ["1.340", "72%", "Tháng 4"],
+        ["1.410", "76%", "Tháng 5"],
+        ["1.520", "82%", "Tháng 6"],
+        ["1.460", "79%", "Tháng 7"],
+        ["1.570", "85%", "Tháng 8"],
+        ["1.630", "88%", "Tháng 9"],
+        ["1.680", "91%", "Tháng 10"],
+        ["1.720", "94%", "Tháng 11"],
+        ["1.630", "88%", "Tháng 12"],
+        ["17.420", "100%", "Tổng cộng"]
+      ];
+
+      const chart = months.map((item, index) => `
+        <div class="bar-wrap ${index === 12 ? "total-bar" : ""}">
+          <span class="bar-value">${item[0]}</span>
+          <span class="bar" style="height:${item[1]}"></span>
+          <span class="bar-label">${item[2]}</span>
+        </div>
+      `).join("");
+
       return `
         <section id="top" class="hero container">
-          <div class="kicker">
-            CỘNG ĐỒNG ROBLOX VIỆT NAM
-          </div>
-
-          <h1>
-            Khám Phá World Of<br>
-            <span>Roblox Scripting</span>
-          </h1>
-
-          <p>
-            Học hỏi, chia sẻ kiến thức lập trình Lua và<br>
-            thiết kế UI game chuyên nghiệp.
-          </p>
-
-          <button
-            class="main-button"
-            onclick="location.hash='resources'">
-            Tham gia ngay →
-          </button>
-
-          <div class="hero-note">
-            <span>Được xây dựng cho người mới</span>
-            <span class="divider"></span>
-            <span>Hoàn toàn miễn phí</span>
-          </div>
-        </section>
-
-        <section class="trust">
-          <div class="container trust-inner">
-            <span>Nội dung dễ hiểu</span>
-            <span>An toàn & minh bạch</span>
-            <span>Cộng đồng hỗ trợ</span>
-          </div>
+          <div class="kicker">KHANHLO</div>
+          <h1>Hack và<br><span>Script</span></h1>
         </section>
 
         <section id="resources" class="resources container">
           <div class="heading">
-            <div>
-              <div class="eyebrow">TÀI NGUYÊN MỚI</div>
-
-              <h2>
-                Học nhanh hơn.<br>
-                <strong>Làm tốt hơn.</strong>
-              </h2>
-            </div>
-
-            <p>
-              Những nội dung thực tế, được chọn lọc để bạn có thể bắt đầu xây dựng thế giới Roblox của riêng mình.
-            </p>
+            <div class="eyebrow">MỌI THỨ Ở ĐÂY 👇</div>
           </div>
 
           <div class="cards">
@@ -730,104 +790,94 @@
             `).join("")}
           </div>
         </section>
+
+        <section class="stats-section container">
+          <div class="stats-board">
+            <div>
+              <p class="stats-title">Thống kê truy cập</p>
+              <p class="stats-subtitle">
+                Theo dõi lượt xem website trong tháng
+              </p>
+
+              <div class="stats-numbers">
+                <div class="stat-number">
+                  <strong>1.630</strong>
+                  <span>Tháng gần nhất</span>
+                </div>
+
+                <div class="stat-number">
+                  <strong>17.420</strong>
+                  <span>Tổng 12 tháng</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="chart-heading">
+                <span>Lượt truy cập theo tháng</span>
+                <span>Đơn vị: lượt xem</span>
+              </div>
+
+              <div class="chart">
+                ${chart}
+              </div>
+
+              <p class="stats-note">
+                Dữ liệu mẫu · Tổng được cộng từ 12 tháng
+              </p>
+            </div>
+          </div>
+        </section>
       `;
     }
 
     function detail(slug) {
       const resource = resources[slug] || resources.script;
 
-      const action = resource.external
-        ? `
-          <a
-            class="main-button"
-            href="${resource.external}"
-            target="_blank"
-            rel="noopener noreferrer">
-            Mở liên kết nguồn ↗
-          </a>
-        `
-        : `
-          <button
-            class="main-button"
-            onclick="notify('Bắt đầu tìm hiểu')">
-            Bắt đầu tìm hiểu ↗
-          </button>
-        `;
+      const bananaCode = `repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Key = "4e5e1052ab89e718d907a117"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaHub.lua"))()`;
 
-      return `
-        <section class="detail-page">
-          <div class="detail-hero container">
-            <a class="back-link" href="#resources">
-              ← Quay lại tài nguyên
+      let content = "";
+
+      if (resource.title === "Script Banana Miễn Phí") {
+        content = `
+          <div class="banana-code-wrap">
+            <h2 class="banana-code-title">Script Banana</h2>
+            <pre class="banana-code" id="banana-code">${bananaCode}</pre>
+            <button class="banana-copy" onclick="copyBananaCode()">
+              Sao chép code
+            </button>
+          </div>
+        `;
+      } else if (resource.title === "Script") {
+        content = `
+          <div class="panel-heading">▣ &nbsp; Các script hub miễn phí</div>
+
+          <div class="hub-list">
+            ${scriptHubs.map((hub, index) => `
+              <article class="hub-card">
+                <h3>${hub.name}</h3>
+                <p>${hub.description}</p>
+                <pre class="hub-code" id="hub-code-${index}">${hub.code}</pre>
+                <button class="hub-copy" onclick="copyHubCode(${index})">
+                  Sao chép code
+                </button>
+              </article>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      let links = "";
+
+      if (resource.title === "Hack Roblox VNG_Quốc Tế") {
+        links = `
+          <div class="hack-links">
+            <a class="main-button" target="_blank" rel="noopener"
+              href="${resource.external}">
+              Delta vng login ↗
             </a>
 
-            <div class="detail-icon">
-              ${resource.icon}
-            </div>
-
-            <div class="eyebrow">
-              ${resource.tag}
-            </div>
-
-            <h1>${resource.title}</h1>
-            <p>${resource.summary}</p>
-          </div>
-
-          <section class="detail-content container">
-            <div class="detail-panel">
-              <div class="panel-heading">
-                ▣ &nbsp; Thông tin tài nguyên
-              </div>
-
-              <div class="points">
-                ${resource.points.map(point => `
-                  <div class="point">
-                    ${point}
-                  </div>
-                `).join("")}
-              </div>
-
-              ${action}
-            </div>
-
-            <aside class="detail-aside">
-              <span class="aside-label">Khanhlo note</span>
-
-              <h2>
-                Học đúng cách,<br>
-                <strong>xây tốt hơn.</strong>
-              </h2>
-
-              <p>
-                Hãy kiểm tra nguồn tải, đọc hướng dẫn và chỉ sử dụng tài nguyên trong môi trường thử nghiệm an toàn.
-              </p>
-
-              <a class="outline" href="#resources">
-                Xem các tài nguyên khác ←
-              </a>
-            </aside>
-          </section>
-        </section>
-      `;
-    }
-
-    function render() {
-      const hash = location.hash.replace("#", "");
-
-      document.getElementById("app").innerHTML =
-        hash.startsWith("resource/")
-          ? detail(hash.split("/")[1])
-          : home();
-
-      if (hash === "resources") {
-        document
-          .getElementById("resources")
-          ?.scrollIntoView();
-      }
-    }
-
-    window.addEventListener("hashchange", render);
-    render();
-  </script>
-</body>
-</html>
+            <a class="main-button" target="_blank" rel="noopener"
+              href="${reso
